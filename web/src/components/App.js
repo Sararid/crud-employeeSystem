@@ -40,17 +40,46 @@ function App() {
       },
       body: JSON.stringify(bodyParams)
     })
-      .then(() => console.log('response success'))
-
+      .then(() => {
+        setEmployeeList([
+          ...employeeList,
+          {
+            name: name,
+            age: age,
+            country: country,
+            position: position,
+            wage: wage,
+          },
+        ]);
+      });
   };
 
   const getEmployees = (ev) => {
     ev.preventDefault()
     return fetch('http://localhost:3001/employees')
       //the response is whatever we have in the backend we send it to the frontend
-      .then((response) => console.log(response))
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data)
+        setEmployeeList(data)
 
+      })
   }
+
+
+  // const printEmployee = () => {
+  //   employeeList.map((val, key) => {
+  //     return <div> <p>Id employee: {val.id}</p>
+  //       <p>Name employee: {val.name} </p>
+  //       <p>Age: {val.age}</p>
+  //       <p> Country: {val.country}</p>
+  //       <p> Position: {val.position}</p>
+  //       <p> Wage: {val.wage}</p>
+  //     </div>
+  //   })
+  // }
+
+
 
   const handleValueInput = (ev) => {
     const value = ev.target.value;
@@ -112,6 +141,19 @@ function App() {
         <section>
 
           <button onClick={getEmployees}>Show employees</button>
+
+          {
+            employeeList.map((val, key) => {
+              return <div> <p>Id employee: {val.id}</p>
+                <p>Name employee: {val.name} </p>
+                <p>Age: {val.age}</p>
+                <p> Country: {val.country}</p>
+                <p> Position: {val.position}</p>
+                <p> Wage: {val.wage}</p>
+              </div>
+            })
+          }
+
         </section>
 
       </main>
