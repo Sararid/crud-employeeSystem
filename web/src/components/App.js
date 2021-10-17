@@ -16,6 +16,8 @@ function App() {
   const [position, setPosition] = useState('');
   const [wage, setWage] = useState(0);
 
+  const [employeeList, setEmployeeList] = useState([]);
+
 
   const addEmployee = (ev) => {
     ev.preventDefault();
@@ -41,6 +43,14 @@ function App() {
       .then(() => console.log('response success'))
 
   };
+
+  const getEmployees = (ev) => {
+    ev.preventDefault()
+    return fetch('http://localhost:3001/employees')
+      //the response is whatever we have in the backend we send it to the frontend
+      .then((response) => console.log(response))
+
+  }
 
   const handleValueInput = (ev) => {
     const value = ev.target.value;
@@ -80,22 +90,30 @@ function App() {
       <header> HR MANAGEMENT SYSTEM</header>
 
       <main>
-        <form action="" className='form'>
 
-          <label htmlFor="name" className="form__label">Name</label> <input className="form__input" type="text" name="name" id="name" onChange={handleValueInput} />
+        <section>
+          <form action="" className='form'>
 
-          <label htmlFor="age" className="form__label">Age</label><input className="form__input" type="number" name="age" id="age" onChange={handleValueInputAge} />
+            <label htmlFor="name" className="form__label">Name</label> <input className="form__input" type="text" name="name" id="name" onChange={handleValueInput} />
 
-          <label htmlFor="country" className="form__label">Country</label><input className="form__input" type="text" name="country" id="country" onChange={handleValueInputCountry} />
+            <label htmlFor="age" className="form__label">Age</label><input className="form__input" type="number" name="age" id="age" onChange={handleValueInputAge} />
+
+            <label htmlFor="country" className="form__label">Country</label><input className="form__input" type="text" name="country" id="country" onChange={handleValueInputCountry} />
 
 
-          <label htmlFor="position" className="form__label"></label>Position<input className="form__input" type="text" name="position" id="position" onChange={handleValueInputPosition} />
+            <label htmlFor="position" className="form__label"></label>Position<input className="form__input" type="text" name="position" id="position" onChange={handleValueInputPosition} />
 
 
-          <label htmlFor="wage" className="form__label">Wage (year)</label><input className="form__input" type="number" name="wage" id="wage" onChange={handleValueInputWage} />
+            <label htmlFor="wage" className="form__label">Wage (year)</label><input className="form__input" type="number" name="wage" id="wage" onChange={handleValueInputWage} />
 
-          <button onClick={addEmployee}>ADD EMPLOYEE</button>
-        </form>
+            <button onClick={addEmployee}>ADD EMPLOYEE</button>
+          </form>
+        </section>
+        <section>
+
+          <button onClick={getEmployees}>Show employees</button>
+        </section>
+
       </main>
 
 

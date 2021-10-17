@@ -36,3 +36,19 @@ app.post('/create', (req, res) => {
   }
 
 });
+
+
+app.get('/employees', (req, res) => {
+  const query = db.prepare('SELECT * FROM employeeSystem order by name asc')
+  const employees = query.all();
+  console.log(employees)
+  //2-ejecutar la query  (all- get)
+  if (!employees) {
+    console.log('not found')
+    res.sendStatus(404)
+  } else {
+    res.json(employees)
+  }
+
+
+});
