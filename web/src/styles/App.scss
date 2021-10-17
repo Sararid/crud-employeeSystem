@@ -9,3 +9,20 @@
   &__input {
   }
 }
+
+.allEmployee {
+  display: flex;
+  border: solid 2px black;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 15px 15px;
+  border: solid 2px black;
+
+  &__list {
+    display: flex;
+  }
+  &__title {
+    font-weight: bold;
+  }
+}

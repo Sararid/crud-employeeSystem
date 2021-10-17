@@ -144,13 +144,15 @@ function App() {
 
           {
             employeeList.map((val, key) => {
-              return <div> <p>Id employee: {val.id}</p>
-                <p>Name employee: {val.name} </p>
-                <p>Age: {val.age}</p>
-                <p> Country: {val.country}</p>
-                <p> Position: {val.position}</p>
-                <p> Wage: {val.wage}</p>
-              </div>
+              return <div className="allEmployee">
+                <ul className="allEmployee__list">
+                  <li className="allEmployee__title">Id employee: {val.id}</li>
+                  <li className="allEmployee__title">Name employee: {val.name} </li>
+                  <li className="allEmployee__title">Age: {val.age}</li>
+                  <li className="allEmployee__title"> Country: {val.country}</li>
+                  <li className="allEmployee__title"> Position: {val.position}</li>
+                  <li className="allEmployee__title"> Wage: {val.wage}</li>
+                </ul> </div>
             })
           }
 
