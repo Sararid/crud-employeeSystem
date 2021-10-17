@@ -17,70 +17,61 @@ function App() {
   const [wage, setWage] = useState(0);
 
 
-  const bodyParams = {
-    'name': name,
-    'age': age,
-    'country': country,
-    'position': position,
-    'wage': wage
-  }
-
   const addEmployee = (ev) => {
     ev.preventDefault();
 
 
-    console.log('Se están pidiendo las películas de la app');
+    const bodyParams = {
+      name: name,
+      age: age,
+      country: country,
+      position: position,
+      wage: wage
+    }
+    console.log(bodyParams)
+
     // CAMBIA ESTE FETCH PARA QUE APUNTE A UN ENDPOINT DE TU SERVIDOR, PIENSA SI DEBE SER GET O POST, PIENSA QUÉ DATOS DEBES ENVIAR, ETC
     return fetch('http://localhost:3001/create', {
       method: 'POST',
-      body: JSON.stringify(bodyParams),
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json'
       },
+      body: JSON.stringify(bodyParams)
     })
-      .then(() => console.log('success'))
+      .then(() => console.log('response success'))
 
   };
 
   const handleValueInput = (ev) => {
-    const value = ev.currentTarget.value;
-    console.log(value)
+    const value = ev.target.value;
+    //console.log(value)
     setName(value)
-    setAge(value)
-    setCountry(value)
-    setPosition(value)
-    setWage(value)
+
   }
 
+  const handleValueInputAge = (ev) => {
+    const value = ev.currentTarget.value;
+    setAge(value)
 
-  // const handleValueInputName = (ev) => {
-  //   const value = ev.currentTarget.value;
-  //   setName(value)
+  }
 
-  // }
-  // const handleValueInputAge = (ev) => {
-  //   const value = ev.currentTarget.value;
-  //   setAge(value)
+  const handleValueInputCountry = (ev) => {
+    const value = ev.currentTarget.value;
+    setCountry(value)
 
-  // }
+  }
 
-  // const handleValueInputCountry = (ev) => {
-  //   const value = ev.currentTarget.value;
-  //   setCountry(value)
+  const handleValueInputPosition = (ev) => {
+    const value = ev.currentTarget.value;
+    setPosition(value)
 
-  // }
+  }
 
-  // const handleValueInputPosition = (ev) => {
-  //   const value = ev.currentTarget.value;
-  //   setPosition(value)
+  const handleValueInputWage = (ev) => {
+    const value = ev.currentTarget.value
+    setWage(value)
 
-  // }
-
-  // const handleValueInputWage = (ev) => {
-  //   const value = ev.currentTarget.value
-  //   setWage(value)
-
-  // }
+  }
 
 
   return (
@@ -93,15 +84,15 @@ function App() {
 
           <label htmlFor="name" className="form__label">Name</label> <input className="form__input" type="text" name="name" id="name" onChange={handleValueInput} />
 
-          <label htmlFor="age" className="form__label">Age</label><input className="form__input" type="number" name="age" id="age" onChange={handleValueInput} />
+          <label htmlFor="age" className="form__label">Age</label><input className="form__input" type="number" name="age" id="age" onChange={handleValueInputAge} />
 
-          <label htmlFor="country" className="form__label">Country</label><input className="form__input" type="text" name="country" id="country" onChange={handleValueInput} />
-
-
-          <label htmlFor="position" className="form__label"></label>Position<input className="form__input" type="text" name="position" id="position" onChange={handleValueInput} />
+          <label htmlFor="country" className="form__label">Country</label><input className="form__input" type="text" name="country" id="country" onChange={handleValueInputCountry} />
 
 
-          <label htmlFor="wage" className="form__label">Wage (year)</label><input className="form__input" type="number" name="wage" id="wage" onChange={handleValueInput} />
+          <label htmlFor="position" className="form__label"></label>Position<input className="form__input" type="text" name="position" id="position" onChange={handleValueInputPosition} />
+
+
+          <label htmlFor="wage" className="form__label">Wage (year)</label><input className="form__input" type="number" name="wage" id="wage" onChange={handleValueInputWage} />
 
           <button onClick={addEmployee}>ADD EMPLOYEE</button>
         </form>
