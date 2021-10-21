@@ -8,21 +8,19 @@ import PropTypes from 'prop-types';
 
 function App() {
 
-
-
+  //constantes 
   const [name, setName] = useState('');
   const [age, setAge] = useState(0);
   const [country, setCountry] = useState('');
   const [position, setPosition] = useState('');
   const [wage, setWage] = useState(0);
 
+  //array donde guardo los employee list
   const [employeeList, setEmployeeList] = useState([]);
 
-
+  // create new employee en database with endpoint CREATE
   const addEmployee = (ev) => {
     ev.preventDefault();
-
-
     const bodyParams = {
       name: name,
       age: age,
@@ -30,9 +28,8 @@ function App() {
       position: position,
       wage: wage
     }
-    console.log(bodyParams)
+    console.log(bodyParams);
 
-    // CAMBIA ESTE FETCH PARA QUE APUNTE A UN ENDPOINT DE TU SERVIDOR, PIENSA SI DEBE SER GET O POST, PIENSA QUÉ DATOS DEBES ENVIAR, ETC
     return fetch('http://localhost:3001/create', {
       method: 'POST',
       headers: {
@@ -51,14 +48,17 @@ function App() {
             wage: wage,
           },
         ]);
+        console.log(employeeList)
       });
   };
 
+  //get all employees in database clicking button
   const getEmployees = (ev) => {
     ev.preventDefault()
     return fetch('http://localhost:3001/employees')
       //the response is whatever we have in the backend we send it to the frontend
       .then((response) => response.json())
+      //el data es el array de objetos en la base datos 
       .then((data) => {
         console.log(data)
         setEmployeeList(data)
@@ -123,7 +123,7 @@ function App() {
         <section>
           <form action="" className='form'>
 
-            <label htmlFor="name" className="form__label">Name</label> <input className="form__input" type="text" name="name" id="name" onChange={handleValueInput} />
+            <label htmlFor="name" className="form__label">Name and Last Name </label> <input className="form__input" type="text" name="name" id="name" onChange={handleValueInput} />
 
             <label htmlFor="age" className="form__label">Age</label><input className="form__input" type="number" name="age" id="age" onChange={handleValueInputAge} />
 
