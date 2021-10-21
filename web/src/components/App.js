@@ -28,7 +28,7 @@ function App() {
       position: position,
       wage: wage
     }
-    console.log(bodyParams);
+    //console.log(bodyParams);
 
     return fetch('http://localhost:3001/create', {
       method: 'POST',
@@ -38,17 +38,22 @@ function App() {
       body: JSON.stringify(bodyParams)
     })
       .then(() => {
-        setEmployeeList([
-          ...employeeList,
-          {
-            name: name,
-            age: age,
-            country: country,
-            position: position,
-            wage: wage,
-          },
-        ]);
-        console.log(employeeList)
+
+        if (name === undefined) {
+          setEmployeeList([
+            ...employeeList,
+            {
+              name: name,
+              age: age,
+              country: country,
+              position: position,
+              wage: wage,
+            },
+          ]);
+        } else {
+          console.log('empleado existe en la base datos ')
+        }
+        //  console.log(employeeList)
       });
   };
 
@@ -137,6 +142,7 @@ function App() {
 
             <button onClick={addEmployee}>ADD EMPLOYEE</button>
           </form>
+
         </section>
         <section>
 
@@ -146,12 +152,12 @@ function App() {
             employeeList.map((val, key) => {
               return <div className="allEmployee">
                 <ul className="allEmployee__list">
-                  <li className="allEmployee__title">Id employee: {val.id}</li>
-                  <li className="allEmployee__title">Name employee: {val.name} </li>
-                  <li className="allEmployee__title">Age: {val.age}</li>
-                  <li className="allEmployee__title"> Country: {val.country}</li>
-                  <li className="allEmployee__title"> Position: {val.position}</li>
-                  <li className="allEmployee__title"> Wage: {val.wage}</li>
+                  <li key={val.id} className="allEmployee__title">Id employee: {val.id}</li>
+                  <li key={val.id} className="allEmployee__title">Name employee: {val.name} </li>
+                  <li key={val.id} className="allEmployee__title">Age: {val.age}</li>
+                  <li key={val.id} className="allEmployee__title"> Country: {val.country}</li>
+                  <li key={val.id} className="allEmployee__title"> Position: {val.position}</li>
+                  <li key={val.id} className="allEmployee__title"> Wage: {val.wage}</li>
                 </ul> </div>
             })
           }

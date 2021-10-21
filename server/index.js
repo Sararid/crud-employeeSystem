@@ -40,24 +40,7 @@ const db = new Database('db/database.db', { verbose: console.log });
 
 // });
 
-//get all employees from database FUNCIONA
-
-// app.get('/employees', (req, res) => {
-//   const query = db.prepare('SELECT * FROM employeeSystem order by name asc')
-//   const employees = query.all();
-//   console.log(employees)
-//   2 - ejecutar la query(all - get)
-//   if (!employees) {
-//     console.log('not found')
-//     res.sendStatus(404)
-//   } else {
-//     res.json(employees)
-//   }
-
-// });
-
-
-
+//INSERT EMPLOYEE IN DATABASE 
 
 //   const query = db.prepare('INSERT INTO employeeSystem (name, age, country, position, wage) VALUES (?, ?, ?, ?, ?)')
 //   const result = query.run(name, age, country, position, wage);
@@ -109,6 +92,23 @@ app.post('/create', (req, res) => {
       });
     }
   }
+});
+
+
+//get all employees from database FUNCIONA
+
+app.get('/employees', (req, res) => {
+  const query = db.prepare('SELECT * FROM employeeSystem order by name asc')
+  const employees = query.all();
+  console.log(employees)
+  // 2 - ejecutar la query(all - get)
+  if (!employees) {
+    console.log('not found')
+    res.sendStatus(404)
+  } else {
+    res.json(employees)
+  }
+
 });
 
 ///cuando hage un input para buscar por nombre o filtrar mirar leccion select
