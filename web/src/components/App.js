@@ -3,10 +3,11 @@
 import "../styles/App.scss";
 import { useEffect, useState } from "react";
 //import ls from '../services/localStorage';
-import { Link, NavLink, Switch, useRouteMatch, Route } from "react-router-dom";
-import PropTypes from "prop-types";
 
 import Form from "./Form";
+import Header from "./Header";
+
+
 function App() {
   //constantes
   const [name, setName] = useState("");
@@ -103,6 +104,8 @@ function App() {
     );
   };
 
+  //delete employee from database 
+
   const deleteEmployee = (id) => {
     return fetch(`http://localhost:3001/employee/delete/${id}`, {
       method: "DELETE",
@@ -116,49 +119,93 @@ function App() {
     });
   };
 
+  //handle Input of form
   const handleValueInput = (value, id) => {
-    if (id === 'name') {
+    if (id === "name") {
       setName(value);
-    } else if (id === 'age') {
+    } else if (id === "age") {
       setAge(value);
-    } else if (id === 'country') {
+    } else if (id === "country") {
       setCountry(value);
-    } else if (id === 'position') {
+    } else if (id === "position") {
       setPosition(value);
-    } else if (id === 'wage') {
+    } else if (id === "wage") {
       setWage(value);
     }
   };
-
 
   const handleValueUpdate = (ev) => {
     const value = ev.currentTarget.value;
     setNewWage(value);
   };
 
+
   return (
     <>
-      <header className='header'> <h1 className='header__title'> HR MANAGEMENT SYSTEM</h1></header>
+      <Header />
       <main>
         <Form handleValueInput={handleValueInput} addEmployee={addEmployee} />
 
-        <section className='database'><h3>Employee database</h3>
-          <div >
-            <button className='form__showBtn' onClick={getEmployees}>Show employees list</button></div>
+        <section className="database">
+          <h3>Employee database</h3>
+          <div>
+            <button className="form__showBtn" onClick={getEmployees}>
+              Show employees list
+            </button>
+          </div>
           {employeeList.map((val, key) => {
             return (
               <div className="allEmployee">
                 <ul className="allEmployee__list">
                   <li key={key} className="allEmployee__details">
-                    <p>Id employee: <span className="allEmployee__details--value"> {key + 1}</span> </p>
-                    <p> Name employee: <span className="allEmployee__details--value"> {val.name} </span></p>
-                    <p> Age: <span className="allEmployee__details--value"> {val.age}</span></p>
-                    <p> Country: <span className="allEmployee__details--value"> {val.country}</span></p>
-                    <p>Position: <span className="allEmployee__details--value"> {val.position}</span> </p>
-                    <p>Wage: <span className="allEmployee__details--value"> {val.wage} </span></p>
+                    <p>
+                      Id employee:{" "}
+                      <span className="allEmployee__details--value">
+                        {" "}
+                        {key + 1}
+                      </span>{" "}
+                    </p>
+                    <p>
+                      {" "}
+                      Name employee:{" "}
+                      <span className="allEmployee__details--value">
+                        {" "}
+                        {val.name}{" "}
+                      </span>
+                    </p>
+                    <p>
+                      {" "}
+                      Age:{" "}
+                      <span className="allEmployee__details--value">
+                        {" "}
+                        {val.age}
+                      </span>
+                    </p>
+                    <p>
+                      {" "}
+                      Country:{" "}
+                      <span className="allEmployee__details--value">
+                        {" "}
+                        {val.country}
+                      </span>
+                    </p>
+                    <p>
+                      Position:{" "}
+                      <span className="allEmployee__details--value">
+                        {" "}
+                        {val.position}
+                      </span>{" "}
+                    </p>
+                    <p>
+                      Wage:{" "}
+                      <span className="allEmployee__details--value">
+                        {" "}
+                        {val.wage}{" "}
+                      </span>
+                    </p>
                   </li>
                 </ul>
-                <div className='allEmployee__updatedList'>
+                <div className="allEmployee__updatedList">
                   <label htmlFor=""> Update Wage (EUR/year) </label>
                   <input
                     type="text"
@@ -168,33 +215,27 @@ function App() {
                     onChange={handleValueUpdate}
                   />
 
+                  <button
+                    className="allEmployee__updatedList--updateBtn"
+                    onClick={() => updateEmployee(val.id)}
+                  >
+                    Update
+                  </button>
 
-                  <button className='allEmployee__updatedList--updateBtn' onClick={() => updateEmployee(val.id)}>Update</button>
-
-                  <button className='allEmployee__updatedList--updateBtn' onClick={() => deleteEmployee(val.id)}>Delete employee</button></div>
+                  <button
+                    className="allEmployee__updatedList--updateBtn"
+                    onClick={() => deleteEmployee(val.id)}
+                  >
+                    Delete employee
+                  </button>
+                </div>
               </div>
-
             );
           })}
         </section>
       </main>
-      <Route path="/contacto">
-        <h2>
-          Este título solo aparece cuando la usuaria entra en la página de
-          contacto
-        </h2>
-      </Route>
-      <h1></h1>{" "}
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Ir al inicio</Link>
-          </li>
-          <li>
-            <Link to="/contacto">Ir a contacto</Link>
-          </li>
-        </ul>
-      </nav>
+
+
     </>
   );
 }
