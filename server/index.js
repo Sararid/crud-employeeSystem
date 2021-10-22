@@ -55,6 +55,21 @@ const db = new Database('db/database.db', { verbose: console.log });
 
 // });
 
+//get all employees from database FUNCIONA
+
+app.get('/employees', (req, res) => {
+  const query = db.prepare('SELECT * FROM employeeSystem order by name asc')
+  const employees = query.all();
+  console.log(employees)
+  // 2 - ejecutar la query(all - get)
+  if (!employees) {
+    console.log('not found')
+    res.sendStatus(404)
+  } else {
+    res.json(employees)
+  }
+
+});
 
 //Api endpoint register EMPLOYEE  
 app.post('/create', (req, res) => {
@@ -66,7 +81,7 @@ app.post('/create', (req, res) => {
   const position = req.body.position
   const wage = req.body.wage
 
-  if (name === undefined || age === undefined || country === undefined || position == undefined || wage === undefined) {
+  if (name === '' || age === '' || country === '' || position == '' || wage === '') {
     res.json({
       error: true,
       message: "debe enviar todos los datos"
@@ -83,33 +98,65 @@ app.post('/create', (req, res) => {
       const employeeInsert = query.run(name, age, country, position, wage);
       res.json({
         error: false,
-        userId: employeeInsert.lastInsertRowid
+        employeeId: employeeInsert.lastInsertRowid
       });
     } else {
       res.json({
         error: true,
-        message: "usuario ya existe"
+        message: "empleado ya existe"
       });
     }
   }
 });
 
-
-//get all employees from database FUNCIONA
-
-app.get('/employees', (req, res) => {
-  const query = db.prepare('SELECT * FROM employeeSystem order by name asc')
-  const employees = query.all();
-  console.log(employees)
-  // 2 - ejecutar la query(all - get)
-  if (!employees) {
-    console.log('not found')
-    res.sendStatus(404)
+//update info of employees
+app.patch('/update', (req, res) => {
+  const id = req.body.id;
+  console.log(id)
+  const wage = req.body.wage
+  const query = db.prepare("UPDATE employeeSystem SET wage = ? WHERE id=?");
+  const updateEmployee = query.run(wage, id);
+  if (updateEmployee.changes !== 0) {
+    res.json(
+      {
+        error: false,
+        updateEmployee
+      }
+    )
   } else {
-    res.json(employees)
+    res.json({ error: true, msj: "Ha ocurrido un error" })
   }
-
 });
+
+
+
+//delete employee 
+
+app.delete("/employee/delete/:id", (req, res) => {
+  const id = req.params.id
+  console.log(id)
+  //verificar que el empleado existe
+  const queryEmployeeExist = db.prepare("SELECT * FROM employeeSystem where id=?");
+  const employeeFound = queryEmployeeExist.get(id);
+
+  if (employeeFound === undefined) {
+    res.json({
+      error: true, message: "empleado no existe"
+    })
+  } else {
+    const queryDeleteEmployee = db.prepare("DELETE from employeeSystem where id = ?");
+    const resultDelete = queryDeleteEmployee.run(id);
+    if (resultDelete.changes !== 0) {
+      res.json({
+        error: false, message: "eliminado"
+      });
+    } else {
+      res.json({ error: true, message: "no fue posible eliminar el usuario " });
+    }
+  }
+})
+
+
 
 ///cuando hage un input para buscar por nombre o filtrar mirar leccion select
 //--Seleccionar todas las columnas de la usuaria cuyo id sea igual a 2; esto nos devolverá solo un registro

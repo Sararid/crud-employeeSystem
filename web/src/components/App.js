@@ -15,6 +15,7 @@ function App() {
   const [position, setPosition] = useState('');
   const [wage, setWage] = useState(0);
 
+  const [newWage, setNewWage] = useState(0);
   //array donde guardo los employee list
   const [employeeList, setEmployeeList] = useState([]);
 
@@ -37,24 +38,19 @@ function App() {
       },
       body: JSON.stringify(bodyParams)
     })
+      .then((response) => response.json())
       .then(() => {
-
-        if (name === undefined) {
-          setEmployeeList([
-            ...employeeList,
-            {
-              name: name,
-              age: age,
-              country: country,
-              position: position,
-              wage: wage,
-            },
-          ]);
-        } else {
-          console.log('empleado existe en la base datos ')
-        }
-        //  console.log(employeeList)
-      });
+        setEmployeeList([
+          ...employeeList,
+          {
+            name: name,
+            age: age,
+            country: country,
+            position: position,
+            wage: wage
+          },
+        ]);
+      })
   };
 
   //get all employees in database clicking button
@@ -71,7 +67,33 @@ function App() {
       })
   }
 
+  //update employee Wage
+  const updateEmployee = (id) => {
 
+    const bodyParams = {
+      wage: newWage,
+      id: id
+    }
+    return fetch('http://localhost:3001/update', {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(bodyParams)
+    })
+
+      //the response is whatever we have in the backend we send it to the frontend
+      .then((response) => response.json())
+      .then(() => {
+        setEmployeeList(employeeList.map((val) => {
+          return val.id === id ? {
+            id: val.id, name: val.name, country: val.country, age: val.age, position: val.position, wage: newWage
+          } : val
+        }));
+
+      });
+
+  };
   // const printEmployee = () => {
   //   employeeList.map((val, key) => {
   //     return <div> <p>Id employee: {val.id}</p>
@@ -84,7 +106,16 @@ function App() {
   //   })
   // }
 
+  const deleteEmployee = (id) => {
+    return fetch(`http://localhost:3001/employee/delete/${id}`)
 
+      .then((response) => {
+        //to erase directly forn the front the employee info 
+        setEmployeeList(employeeList.filter((val) => {
+          return val.id !== id
+        }))
+      })
+  }
 
   const handleValueInput = (ev) => {
     const value = ev.target.value;
@@ -117,6 +148,11 @@ function App() {
 
   }
 
+  const handleValueUpdate = (ev) => {
+    const value = ev.currentTarget.value
+    setNewWage(value)
+
+  }
 
   return (
     <>
@@ -152,13 +188,19 @@ function App() {
             employeeList.map((val, key) => {
               return <div className="allEmployee">
                 <ul className="allEmployee__list">
-                  <li key={val.id} className="allEmployee__title">Id employee: {val.id}</li>
-                  <li key={val.id} className="allEmployee__title">Name employee: {val.name} </li>
-                  <li key={val.id} className="allEmployee__title">Age: {val.age}</li>
-                  <li key={val.id} className="allEmployee__title"> Country: {val.country}</li>
-                  <li key={val.id} className="allEmployee__title"> Position: {val.position}</li>
-                  <li key={val.id} className="allEmployee__title"> Wage: {val.wage}</li>
-                </ul> </div>
+                  <li key={val.id} className="allEmployee__title">
+                    Id employee: {val.id}
+                    Name employee: {val.name}
+                    Age: {val.age}
+                    Country: {val.country}
+                    Position: {val.position}
+                    Wage: {val.wage}</li>
+                </ul>
+                <label htmlFor="">
+                  <input type="text" name="wageUpdate" id="wageUpdate" placeholder='update salary' onChange={handleValueUpdate} /> </label>
+                <button onClick={() => updateEmployee(val.id)}>update</button>
+                <button onClick={() => deleteEmployee(val.id)}>delete</button>
+              </div>
             })
           }
 
