@@ -50,12 +50,14 @@ body {
 .allEmployee {
   display: flex;
   border: solid 2px black;
-  flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
   padding: 15px 15px;
   border: solid 2px black;
-
+  @media all and (max-width: 509px) {
+    flex-direction: column;
+    align-items: center;
+  }
   &__list {
     display: flex;
     padding-right: 4em;
@@ -73,6 +75,10 @@ body {
     justify-content: center;
     flex-direction: column;
     align-items: flex-start;
+    @media all and (max-width: 509px) {
+      flex-direction: column;
+      align-items: center;
+    }
     &--updateBtn {
       border: none;
       width: 110px;

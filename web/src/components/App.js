@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { Link, NavLink, Switch, useRouteMatch, Route } from "react-router-dom";
 import PropTypes from "prop-types";
 
+import Form from "./Form";
 function App() {
   //constantes
   const [name, setName] = useState("");
@@ -150,67 +151,12 @@ function App() {
     <>
       <header className='header'> <h1 className='header__title'> HR MANAGEMENT SYSTEM</h1></header>
       <main>
-        <section>
-
-          <form className="form">
-            <h2>Employee Information</h2>
-            <label htmlFor="name" className="form__label">
-              Name and Last Name{" "}
-            </label>{" "}
-            <input
-              className="form__input"
-              type="text"
-              name="name"
-              id="name"
-              onChange={handleValueInput}
-            />
-            <label htmlFor="age" className="form__label">
-              Age
-            </label>
-            <input
-              className="form__input"
-              type="number"
-              name="age"
-              id="age"
-              onChange={handleValueInputAge}
-            />
-            <label htmlFor="country" className="form__label">
-              Country
-            </label>
-            <input
-              className="form__input"
-              type="text"
-              name="country"
-              id="country"
-              onChange={handleValueInputCountry}
-            />
-            <label htmlFor="position" className="form__label"></label>Position
-            <input
-              className="form__input"
-              type="text"
-              name="position"
-              id="position"
-              onChange={handleValueInputPosition}
-            />
-            <label htmlFor="wage" className="form__label">
-              Wage (EUR/year)
-            </label>
-            <input
-              className="form__input"
-              type="number"
-              name="wage"
-              id="wage"
-              onChange={handleValueInputWage}
-            />
-            <button className='form__addBtn' onClick={addEmployee}>Add new employee</button>
-          </form>
-        </section>
+        <Form handleValueInput={handleValueInput} handleValueInputAge={handleValueInputAge} handleValueInputPosition={handleValueInputPosition} handleValueInputCountry={handleValueInputCountry}
+          handleValueInputWage={handleValueInputWage} addEmployee={addEmployee} />
 
         <section className='database'><h3>Employee database</h3>
           <div >
-
             <button className='form__showBtn' onClick={getEmployees}>Show employees list</button></div>
-
           {employeeList.map((val, key) => {
             return (
               <div className="allEmployee">
