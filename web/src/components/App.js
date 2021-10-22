@@ -116,31 +116,43 @@ function App() {
     });
   };
 
-  const handleValueInput = (ev) => {
-    const value = ev.target.value;
-    //console.log(value)
-    setName(value);
+  const handleValueInput = (value, id) => {
+    if (id === 'name') {
+      setName(value);
+    } else if (id === 'age') {
+      setAge(value);
+    } else if (id === 'country') {
+      setCountry(value);
+    } else if (id === 'position') {
+      setPosition(value);
+    } else if (id === 'wage') {
+      setWage(value);
+    }
   };
+  //   setName(value);
+  // const handleValueInput = (value, id) => {
+  //   setName(value);
+  // };
 
-  const handleValueInputAge = (ev) => {
-    const value = ev.currentTarget.value;
-    setAge(value);
-  };
+  // const handleValueInputAge = (ev) => {
+  //   const value = ev.currentTarget.value;
+  //   setAge(value);
+  // };
 
-  const handleValueInputCountry = (ev) => {
-    const value = ev.currentTarget.value;
-    setCountry(value);
-  };
+  // const handleValueInputCountry = (ev) => {
+  //   const value = ev.currentTarget.value;
+  //   setCountry(value);
+  // };
 
-  const handleValueInputPosition = (ev) => {
-    const value = ev.currentTarget.value;
-    setPosition(value);
-  };
+  // const handleValueInputPosition = (ev) => {
+  //   const value = ev.currentTarget.value;
+  //   setPosition(value);
+  // };
 
-  const handleValueInputWage = (ev) => {
-    const value = ev.currentTarget.value;
-    setWage(value);
-  };
+  // const handleValueInputWage = (ev) => {
+  //   const value = ev.currentTarget.value;
+  //   setWage(value);
+  // };
 
   const handleValueUpdate = (ev) => {
     const value = ev.currentTarget.value;
@@ -151,8 +163,7 @@ function App() {
     <>
       <header className='header'> <h1 className='header__title'> HR MANAGEMENT SYSTEM</h1></header>
       <main>
-        <Form handleValueInput={handleValueInput} handleValueInputAge={handleValueInputAge} handleValueInputPosition={handleValueInputPosition} handleValueInputCountry={handleValueInputCountry}
-          handleValueInputWage={handleValueInputWage} addEmployee={addEmployee} />
+        <Form handleValueInput={handleValueInput} addEmployee={addEmployee} />
 
         <section className='database'><h3>Employee database</h3>
           <div >
