@@ -107,7 +107,10 @@ function App() {
   // }
 
   const deleteEmployee = (id) => {
-    return fetch(`http://localhost:3001/employee/delete/${id}`)
+    return fetch(`http://localhost:3001/employee/delete/${id}`, {
+      method: 'DELETE',
+
+    })
 
       .then((response) => {
         //to erase directly forn the front the employee info 
