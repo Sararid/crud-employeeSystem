@@ -129,30 +129,7 @@ function App() {
       setWage(value);
     }
   };
-  //   setName(value);
-  // const handleValueInput = (value, id) => {
-  //   setName(value);
-  // };
 
-  // const handleValueInputAge = (ev) => {
-  //   const value = ev.currentTarget.value;
-  //   setAge(value);
-  // };
-
-  // const handleValueInputCountry = (ev) => {
-  //   const value = ev.currentTarget.value;
-  //   setCountry(value);
-  // };
-
-  // const handleValueInputPosition = (ev) => {
-  //   const value = ev.currentTarget.value;
-  //   setPosition(value);
-  // };
-
-  // const handleValueInputWage = (ev) => {
-  //   const value = ev.currentTarget.value;
-  //   setWage(value);
-  // };
 
   const handleValueUpdate = (ev) => {
     const value = ev.currentTarget.value;
