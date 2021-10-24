@@ -1,21 +1,29 @@
 {
-  "name": "server",
+  "name": "hr-management-system",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/index.js",
-    "dev": "nodemon src/index.js"
+    "dev": "nodemon src/index.js",
+    "publish": "cd web && npm run build && cd .. && rm -rf ./public ; mv web/build public",
+    "build": "cd web && npm install && npm run build && cd .. && mv ./web/build ./public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sararid/hr-management-system.git"
   },
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sararid/hr-management-system/issues"
+  },
+  "homepage": "https://github.com/Sararid/hr-management-system#readme",
   "dependencies": {
     "better-sqlite3": "^7.4.3",
     "cors": "^2.8.5",
     "ejs": "^3.1.6",
-    "express": "^4.17.1",
-    "nodemon": "^2.0.13",
-    "sqlite3": "^5.0.2"
+    "express": "^4.17.1"
   }
 }

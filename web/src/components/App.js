@@ -32,7 +32,7 @@ function App() {
     };
     //console.log(bodyParams);
 
-    return fetch("http://localhost:3001/create", {
+    return fetch("/create", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -58,7 +58,7 @@ function App() {
   const getEmployees = (ev) => {
     ev.preventDefault();
     return (
-      fetch("http://localhost:3001/employees")
+      fetch("/employees")
         //the response is whatever we have in the backend we send it to the frontend
         .then((response) => response.json())
         //el data es el array de objetos en la base datos
@@ -76,7 +76,7 @@ function App() {
       id: id,
     };
     return (
-      fetch("http://localhost:3001/update", {
+      fetch("/update", {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -107,7 +107,7 @@ function App() {
   //delete employee from database
 
   const deleteEmployee = (id) => {
-    return fetch(`http://localhost:3001/employee/delete/${id}`, {
+    return fetch(`/employee/delete/${id}`, {
       method: "DELETE",
     }).then((response) => {
       //to erase directly forn the front the employee info
