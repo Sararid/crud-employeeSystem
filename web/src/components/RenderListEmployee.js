@@ -1,7 +1,6 @@
 import RenderEmpDetail from "./RenderEmpDetail";
 
 const RenderListEmployee = (props) => {
-
     return (
         <section className="database">
             <h3>Employee database</h3>
@@ -17,14 +16,10 @@ const RenderListEmployee = (props) => {
                             <li key={key} className="allEmployee__details">
                                 <p>
                                     Id employee:
-                                    <span className="allEmployee__details--value">
-
-                                        {key + 1}
-                                    </span>
+                                    <span className="allEmployee__details--value">{key + 1}</span>
                                 </p>
 
                                 <RenderEmpDetail val={val} />
-
                             </li>
                         </ul>
 
@@ -56,7 +51,7 @@ const RenderListEmployee = (props) => {
                 );
             })}
         </section>
-    )
-}
+    );
+};
 
 export default RenderListEmployee;

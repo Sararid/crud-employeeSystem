@@ -1,14 +1,12 @@
 const FormInput = (props) => {
     const handleOnchangeInput = (ev) => {
-
         props.handleValueInput(ev.target.value, ev.target.id);
     };
     return (
         <>
-            {" "}
             <label htmlFor={props.label} className="form__label">
                 {props.label}
-            </label>{" "}
+            </label>
             <input
                 className="form__input"
                 type={props.type}

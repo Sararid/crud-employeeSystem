@@ -1,49 +1,31 @@
 const RenderEmpDetail = (props) => {
-
     return (
         <>
-
             <p>
-
                 Name employee:
-                <span className="allEmployee__details--value">
-
-                    {props.val.name}
-                </span>
+                <span className="allEmployee__details--value">{props.val.name}</span>
             </p>
             <p>
-
                 Age:
-                <span className="allEmployee__details--value">
-
-                    {props.val.age}
-                </span>
+                <span className="allEmployee__details--value">{props.val.age}</span>
             </p>
             <p>
-
                 Country:
-                <span className="allEmployee__details--value">
-
-                    {props.val.country}
-                </span>
+                <span className="allEmployee__details--value">{props.val.country}</span>
             </p>
 
             <p>
-                Position:{" "}
+                Position:
                 <span className="allEmployee__details--value">
-                    {" "}
                     {props.val.position}
-                </span>{" "}
+                </span>
             </p>
             <p>
-                Wage:{" "}
-                <span className="allEmployee__details--value">
-                    {" "}
-                    {props.val.wage}{" "}
-                </span>
+                Wage:
+                <span className="allEmployee__details--value"> {props.val.wage} </span>
             </p>
         </>
-    )
-}
+    );
+};
 
 export default RenderEmpDetail;

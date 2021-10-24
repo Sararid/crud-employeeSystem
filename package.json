@@ -1,0 +1,19 @@
+{
+  "name": "11_simple-crud-react-node-mysql",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "publish": "cd web && npm run build && cd .. && rm -rf ./public ; mv ./web/build ./public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sararid/crud-employeeSystem.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sararid/crud-employeeSystem/issues"
+  },
+  "homepage": "https://github.com/Sararid/crud-employeeSystem#readme"
+}

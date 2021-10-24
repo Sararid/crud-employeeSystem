@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 
 import Form from "./Form";
 import Header from "./Header";
-import RenderListEmployee from "./RenderListEmployee"
+import RenderListEmployee from "./RenderListEmployee";
 
 function App() {
   //constantes
@@ -104,7 +104,7 @@ function App() {
     );
   };
 
-  //delete employee from database 
+  //delete employee from database
 
   const deleteEmployee = (id) => {
     return fetch(`http://localhost:3001/employee/delete/${id}`, {
@@ -139,17 +139,19 @@ function App() {
     setNewWage(value);
   };
 
-
   return (
     <>
       <Header />
       <main>
         <Form handleValueInput={handleValueInput} addEmployee={addEmployee} />
-
-        <RenderListEmployee employeeList={employeeList} getEmployees={getEmployees} handleValueUpdate={handleValueUpdate} updateEmployee={updateEmployee} deleteEmployee={deleteEmployee} />
+        <RenderListEmployee
+          employeeList={employeeList}
+          getEmployees={getEmployees}
+          handleValueUpdate={handleValueUpdate}
+          updateEmployee={updateEmployee}
+          deleteEmployee={deleteEmployee}
+        />
       </main>
-
-
     </>
   );
 }
