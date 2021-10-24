@@ -1,7 +1,7 @@
 // Fichero src/components/App.js
 
 import "../styles/App.scss";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 //import ls from '../services/localStorage';
 
 import Form from "./Form";

@@ -7,12 +7,14 @@ const { query } = require('express');
 // create and config server
 const app = express();
 app.use(cors());
-app.use(express.json());
+app.use(express.json({
+  limit: '50mb',
+}));
 
 // init express aplication
 const serverPort = process.env.PORT || 3001;
 app.listen(serverPort, () => {
-  console.log(`Server listening at port: ${serverPort}`);
+  console.log(`Server listening at port:  http://localhost:${serverPort}`);
 });
 
 
