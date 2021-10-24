@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const Database = require('better-sqlite3');
+const path = require('path');
 const { query } = require('express');
 
 // create and config server
@@ -9,13 +10,19 @@ app.use(cors());
 app.use(express.json());
 
 // init express aplication
-const serverPort = 3001;
-app.listen(serverPort, () => { console.log(`Server listening at http://localhost:${serverPort}`); });
+const serverPort = process.env.PORT || 3001;
+app.listen(serverPort, () => {
+  console.log(`Server listening at port: ${serverPort}`);
+});
 
+
+// config express static server
+const staticServerPath = './public';
+app.use(express.static(staticServerPath));
 
 
 // database
-const db = new Database('db/database.db', { verbose: console.log });
+const db = new Database('./src/db/database.db', { verbose: console.log });
 
 
 // // first endpoint to create , add possibility to enter unique data  
@@ -161,3 +168,11 @@ app.delete("/employee/delete/:id", (req, res) => {
 ///cuando hage un input para buscar por nombre o filtrar mirar leccion select
 //--Seleccionar todas las columnas de la usuaria cuyo id sea igual a 2; esto nos devolverá solo un registro
 //-- Esto nos devolverá 0 o 1 registros en función de si en la tabla existe el id
+
+// not found error
+app.get('*', (req, res) => {
+  // relative to this directory
+  const notFoundFileRelativePath = '../public/404-not-found.html';
+  const notFoundFileAbsolutePath = path.join(__dirname, notFoundFileRelativePath);
+  res.status(404).sendFile(notFoundFileAbsolutePath);
+});
