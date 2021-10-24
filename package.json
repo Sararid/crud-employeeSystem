@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "publish": "cd web && npm run build && cd .. && rm -rf ./public ; mv ./web/build ./public"
   },
   "repository": {

@@ -10,7 +10,7 @@ app.use(cors());
 app.use(express.json());
 
 // init express aplication
-const serverPort = 3001;
+const serverPort = process.env.PORT || 3001;
 app.listen(serverPort, () => {
   console.log(`Server listening at http://localhost:${serverPort}`);
 });
