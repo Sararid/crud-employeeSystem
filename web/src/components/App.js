@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 
 import Form from "./Form";
 import Header from "./Header";
-
+import RenderListEmployee from "./RenderListEmployee"
 
 function App() {
   //constantes
@@ -146,93 +146,7 @@ function App() {
       <main>
         <Form handleValueInput={handleValueInput} addEmployee={addEmployee} />
 
-        <section className="database">
-          <h3>Employee database</h3>
-          <div>
-            <button className="form__showBtn" onClick={getEmployees}>
-              Show employees list
-            </button>
-          </div>
-          {employeeList.map((val, key) => {
-            return (
-              <div className="allEmployee">
-                <ul className="allEmployee__list">
-                  <li key={key} className="allEmployee__details">
-                    <p>
-                      Id employee:{" "}
-                      <span className="allEmployee__details--value">
-                        {" "}
-                        {key + 1}
-                      </span>{" "}
-                    </p>
-                    <p>
-                      {" "}
-                      Name employee:{" "}
-                      <span className="allEmployee__details--value">
-                        {" "}
-                        {val.name}{" "}
-                      </span>
-                    </p>
-                    <p>
-                      {" "}
-                      Age:{" "}
-                      <span className="allEmployee__details--value">
-                        {" "}
-                        {val.age}
-                      </span>
-                    </p>
-                    <p>
-                      {" "}
-                      Country:{" "}
-                      <span className="allEmployee__details--value">
-                        {" "}
-                        {val.country}
-                      </span>
-                    </p>
-                    <p>
-                      Position:{" "}
-                      <span className="allEmployee__details--value">
-                        {" "}
-                        {val.position}
-                      </span>{" "}
-                    </p>
-                    <p>
-                      Wage:{" "}
-                      <span className="allEmployee__details--value">
-                        {" "}
-                        {val.wage}{" "}
-                      </span>
-                    </p>
-                  </li>
-                </ul>
-                <div className="allEmployee__updatedList">
-                  <label htmlFor=""> Update Wage (EUR/year) </label>
-                  <input
-                    type="text"
-                    name="wageUpdate"
-                    id="wageUpdate"
-                    placeholder="update salary"
-                    onChange={handleValueUpdate}
-                  />
-
-                  <button
-                    className="allEmployee__updatedList--updateBtn"
-                    onClick={() => updateEmployee(val.id)}
-                  >
-                    Update
-                  </button>
-
-                  <button
-                    className="allEmployee__updatedList--updateBtn"
-                    onClick={() => deleteEmployee(val.id)}
-                  >
-                    Delete employee
-                  </button>
-                </div>
-              </div>
-            );
-          })}
-        </section>
+        <RenderListEmployee employeeList={employeeList} getEmployees={getEmployees} handleValueUpdate={handleValueUpdate} updateEmployee={updateEmployee} deleteEmployee={deleteEmployee} />
       </main>
 
 
