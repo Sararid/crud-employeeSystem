@@ -19,7 +19,7 @@ const staticServerPathWeb = "./web";
 app.use(express.static(staticServerPathWeb));
 
 // database
-const db = new Database("db/database.db", { verbose: console.log });
+const db = new Database("./src/db/database.db", { verbose: console.log });
 
 //get all employees from database FUNCIONA
 
