@@ -10,9 +10,10 @@ app.use(cors());
 app.use(express.json());
 
 // init express aplication
-const serverPort = process.env.PORT || 3001;
+
+const serverPort = process.env.PORT || 3000;
 app.listen(serverPort, () => {
-  console.log(`Server listening at http://localhost:${serverPort}`);
+  console.log(`Server listening at port: ${serverPort}`);
 });
 
 const staticServerPathWeb = "./web";
@@ -137,10 +138,3 @@ app.delete("/employee/delete/:id", (req, res) => {
 //-- Esto nos devolverá 0 o 1 registros en función de si en la tabla existe el id
 
 
-// not found error 
-// app.get('*', (req, res) => {
-//   //relative to this directory
-//   const notFoundFileRelativePath = "../web/4040-not-found.html"
-//   const notFoundFileAbsolutePath = path.join(__dirname, notFoundFileRelativePath)
-//   res.status(404).sendFile(notFoundFileAbsolutePath)
-// })
