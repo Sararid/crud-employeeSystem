@@ -169,10 +169,10 @@ app.delete("/employee/delete/:id", (req, res) => {
 //--Seleccionar todas las columnas de la usuaria cuyo id sea igual a 2; esto nos devolverá solo un registro
 //-- Esto nos devolverá 0 o 1 registros en función de si en la tabla existe el id
 
-// not found error
-app.get('*', (req, res) => {
-  // relative to this directory
-  const notFoundFileRelativePath = '../public/404-not-found.html';
-  const notFoundFileAbsolutePath = path.join(__dirname, notFoundFileRelativePath);
-  res.status(404).sendFile(notFoundFileAbsolutePath);
-});
+// // not found error
+// app.get('*', (req, res) => {
+//   // relative to this directory
+//   const notFoundFileRelativePath = '../public/404-not-found.html';
+//   const notFoundFileAbsolutePath = path.join(__dirname, notFoundFileRelativePath);
+//   res.status(404).sendFile(notFoundFileAbsolutePath);
+// });
