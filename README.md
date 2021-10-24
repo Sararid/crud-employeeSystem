@@ -3,7 +3,7 @@
 
 <p align="left"> <img src="https://komarev.com/ghpvc/?username=sararid&label=Profile%20views&color=0e75b6&style=flat" alt="sararid" /> </p>
 
-- 🔭 Please find here an HR management software that allows users to add, update and erase employee’s details in the database!
+- 🔭 Please find here an HR management app that allows users to add, update and erase employee’s details in the database!
 
 The app is deployed in heroku => https://hr-management-system-db.herokuapp.com/#/
 
