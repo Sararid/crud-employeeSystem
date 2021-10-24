@@ -13,6 +13,6 @@ The app is deployed in heroku => https://hr-management-system-db.herokuapp.com/#
 <h3 align="left">Connect with me:</h3>
 <p align="left">
 <a href="https://twitter.com/sara_rid" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/twitter.svg" alt="sara_rid" height="30" width="40" /></a>
-<a href="https://linkedin.com/in/www.linkedin.com/in/sara-rd/" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg" alt="www.linkedin.com/in/sara-rd/" height="30" width="40" /></a><a href="mailto:sarayridouane@gmail.com"><img src="https://img.icons8.com/color/35/000000/gmail.png" alt="email"/></a>
+<a href="https://linkedin.com/in/www.linkedin.com/in/sara-rd/" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg" alt="www.linkedin.com/in/sara-rd/" height="30" width="40" /></a><a href="mailto:sarayridouane@gmail.com"><img src="https://img.icons8.com/color/35/000000/gmail.png" alt="email" height="30" width="40" /></a>
 
 </p>
