@@ -1,23 +1,17 @@
-// Fichero src/components/App.js
-
 import "../styles/App.scss";
 import { useState } from "react";
-//import ls from '../services/localStorage';
-
 import Form from "./Form";
 import Header from "./Header";
 import RenderListEmployee from "./RenderListEmployee";
 
 function App() {
-  //constantes
+
   const [name, setName] = useState("");
   const [age, setAge] = useState(0);
   const [country, setCountry] = useState("");
   const [position, setPosition] = useState("");
   const [wage, setWage] = useState(0);
-
   const [newWage, setNewWage] = useState(0);
-  //array donde guardo los employee list
   const [employeeList, setEmployeeList] = useState([]);
 
   // create new employee en database with endpoint CREATE
@@ -30,8 +24,6 @@ function App() {
       position: position,
       wage: wage,
     };
-    //console.log(bodyParams);
-
     return fetch("/create", {
       method: "POST",
       headers: {
@@ -54,14 +46,12 @@ function App() {
       });
   };
 
-  //get all employees in database clicking button
+  //get all employees in database 
   const getEmployees = (ev) => {
     ev.preventDefault();
     return (
       fetch("/employees")
-        //the response is whatever we have in the backend we send it to the frontend
         .then((response) => response.json())
-        //el data es el array de objetos en la base datos
         .then((data) => {
           console.log(data);
           setEmployeeList(data);
@@ -83,7 +73,6 @@ function App() {
         },
         body: JSON.stringify(bodyParams),
       })
-        //the response is whatever we have in the backend we send it to the frontend
         .then((response) => response.json())
         .then(() => {
           setEmployeeList(
@@ -105,12 +94,10 @@ function App() {
   };
 
   //delete employee from database
-
   const deleteEmployee = (id) => {
     return fetch(`/employee/delete/${id}`, {
       method: "DELETE",
     }).then((response) => {
-      //to erase directly forn the front the employee info
       setEmployeeList(
         employeeList.filter((val) => {
           return val.id !== id;
