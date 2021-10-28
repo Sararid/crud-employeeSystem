@@ -1,0 +1,70 @@
+.database {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.allEmployee {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 0.5em 0.5em;
+  padding: 0.6em 0.5em;
+  flex-direction: column;
+  align-items: center;
+
+  max-width: 259px;
+  background-color: white;
+  @media all and (min-width: 508px) {
+    flex-direction: row;
+    min-width: 450px;
+    justify-content: space-around;
+  }
+  @media all and (min-width: 768px) {
+    flex-direction: row;
+    min-width: 700px;
+  }
+  &__list {
+    display: flex;
+    padding-right: 4em;
+  }
+  &__details {
+    font-weight: bold;
+    list-style: none;
+    @media all and (min-width: 509px) {
+      min-width: 180px;
+    }
+    &--value {
+      color: goldenrod;
+      margin-left: 7px;
+    }
+  }
+
+  &__updatedList {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding-right: 0.4em;
+
+    @media all and (min-width: 509px) {
+      flex-direction: column;
+      align-items: center;
+    }
+    @media all and (min-width: 768px) {
+      align-items: flex-start;
+    }
+    &--updateBtn {
+      border: none;
+      width: 120px;
+      height: 40px;
+      background-color: gold;
+      margin-top: 0.8em;
+    }
+    &--label {
+      margin: 5px 0;
+    }
+    &--input {
+      border: solid 1px $grey;
+    }
+  }
+}

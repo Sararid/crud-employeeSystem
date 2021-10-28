@@ -1,0 +1,41 @@
+.header {
+  &__title {
+    text-align: center;
+    font-size: 3rem;
+  }
+
+  &__section {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    height: 70vh;
+    padding: 40px;
+    background-color: white;
+    background-image: linear-gradient(45deg, $grey, $light_purple, $purple);
+    border-radius: 20px;
+    @media all and (min-width: 768px) {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+    }
+
+    &--btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+    }
+
+    &--desc {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: aliceblue;
+      justify-content: center;
+      flex-wrap: wrap;
+      background-color: transparent;
+    }
+  }
+}
